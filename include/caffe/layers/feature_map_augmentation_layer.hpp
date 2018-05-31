@@ -45,6 +45,8 @@ class FeatureMapAugmentationLayer : public Layer<Dtype> {
   //     const vector<bool>& propagate_down, const vector<Blob<Dtype>*>& bottom) {}
 
   Blob<float> rand_vec_;
+  float amp_min_;
+  float scale_max_;
 };
 
 }  // namespace caffe

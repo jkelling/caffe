@@ -322,7 +322,7 @@ message ParamSpec {
 // NOTE
 // Update the next available ID when you add a new LayerParameter field.
 //
-// LayerParameter next available layer-specific ID: 148 (last added: swish_param)
+// LayerParameter next available layer-specific ID: 149 (last added: augmentation_param)
 message LayerParameter {
   optional string name = 1; // the layer name
   optional string type = 2; // the layer type
@@ -375,6 +375,7 @@ message LayerParameter {
   // engine parameter for selecting the implementation.
   // The default for the engine is set by the ENGINE switch at compile-time.
   optional AccuracyParameter accuracy_param = 102;
+  optional AugmentationParameter augmentation_param = 149;
   optional ArgMaxParameter argmax_param = 103;
   optional BatchNormParameter batch_norm_param = 139;
   optional BiasParameter bias_param = 141;
@@ -443,6 +444,19 @@ message TransformationParameter {
   optional bool force_color = 6 [default = false];
   // Force the decoded image to have 1 color channels.
   optional bool force_gray = 7 [default = false];
+}
+
+// Message that stores parameters used to apply data augmentation
+// to the data layer's data
+message AugmentationParameter{
+  // Max amplification of input to be multiplied by uniform(0,1)
+  optional float amp_min = 1 [default = .8];
+  // Specify if we want to randomly mirror data.
+  optional bool mirror = 3 [default = true];
+  // Specify if we would like to randomly crop an image.
+  optional uint32 crop_size = 4 [default = 0];
+  // Max scaling applied to input (both ways)
+  optional float scale_max = 5 [default = .2];
 }
 
 // Message that stores parameters shared by loss layers
