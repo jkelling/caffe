@@ -5,7 +5,8 @@
 
 #include <opencv2/imgproc.hpp>
 
-#if 0
+//#define DBG_PRINT
+#ifdef DBG_PRINT
 #include <opencv2/imgcodecs.hpp>
 #include <sstream>
 #include <iostream>
@@ -115,7 +116,7 @@ void FeatureMapAugmentationLayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>&
     cv::warpAffine(imgBottom(roi)*amp, imgTop, T, imgTop.size());
     cv::warpAffine(mapBottom(roi), mapTop, T, mapTop.size());
 
-#if 0
+#ifdef DBG_PRINT
     std::cout << "augment_" << i << " roi= " << roi << std::endl;
     cv::Mat dbgTmp = cv::Mat::ones(2*shapeBottom, 2*shapeBottom, CV_32F);
     dbgTmp(cv::Rect(0,0,shapeBottom, shapeBottom)) = (imgBottom*128)+128;
