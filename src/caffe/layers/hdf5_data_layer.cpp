@@ -197,7 +197,6 @@ void HDF5DataLayer<Dtype>::LayerSetUp(const vector<Blob<Dtype>*>& bottom,
     hdf5DataLayerDetail::HDF5DataManager<Dtype>::instance().registerFileSet
     (hdf_filenames, &this->layer_param_);
 
-
   current_buffer_ = data_handler_->getBuffer(nullptr);
   current_row_ = 0;
 
